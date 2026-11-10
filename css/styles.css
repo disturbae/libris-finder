@@ -1,0 +1,70 @@
+/* LibrisFinder – BEM, mobile-first */
+:root{
+  --c-brand:#1f3a5f; --c-accent:#e07a1f; --c-bg:#f6f4ef; --c-surface:#fff;
+  --c-text:#1d2330; --c-muted:#667085; --c-border:#e4e0d6;
+  --c-play:#0b8043; --c-amazon:#232f3e; --c-store:#7a3e9d;
+  --radius:14px; --gap:1rem; --shadow:0 2px 10px rgb(0 0 0 / .07);
+  --font:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--c-bg:#12161d;--c-surface:#1b212b;--c-text:#eef1f6;--c-muted:#9aa4b5;--c-border:#2a3240;--c-brand:#0f2540}
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:var(--font);background:var(--c-bg);color:var(--c-text);line-height:1.45;
+  padding-bottom:env(safe-area-inset-bottom)}
+.container{max-width:1100px;margin:0 auto;padding:var(--gap)}
+
+/* hero + search */
+.hero{background:var(--c-brand);color:#fff;text-align:center;
+  padding:calc(1.5rem + env(safe-area-inset-top)) var(--gap) 1.5rem}
+.hero__logo{margin:0;font-size:1.9rem;letter-spacing:-.02em}
+.hero__logo span{color:var(--c-accent)}
+.hero__tagline{margin:.25rem 0 1rem;opacity:.85}
+.search{display:flex;gap:.5rem;max-width:640px;margin:0 auto}
+.search__label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.search__input{flex:1;min-width:0;padding:.85rem 1rem;font-size:1rem;border:0;border-radius:var(--radius)}
+.search__btn{padding:.85rem 1.2rem;font-size:1rem;font-weight:600;border:0;border-radius:var(--radius);
+  background:var(--c-accent);color:#fff;cursor:pointer}
+.search__btn:focus-visible,.search__input:focus-visible,.more:focus-visible,.card__link:focus-visible{outline:3px solid #7cb7ff;outline-offset:2px}
+
+/* status */
+.status{min-height:1.5rem;margin:.5rem 0 1rem;color:var(--c-muted);text-align:center}
+.status--error{color:#c0392b}
+.status__chips{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-top:.75rem}
+.chip{border:1px solid var(--c-border);background:var(--c-surface);color:var(--c-text);
+  border-radius:999px;padding:.35rem .8rem;cursor:pointer;font-size:.9rem}
+
+/* grid */
+.grid{display:grid;grid-template-columns:1fr;gap:var(--gap)}
+@media(min-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:960px){.grid{grid-template-columns:repeat(3,1fr)}}
+
+/* card */
+.card{display:flex;gap:var(--gap);padding:var(--gap);background:var(--c-surface);
+  border:1px solid var(--c-border);border-radius:var(--radius);box-shadow:var(--shadow);min-width:0}
+.card__media{flex:0 0 96px}
+.card__img{width:96px;height:144px;object-fit:cover;border-radius:6px;background:var(--c-border);display:block}
+.card__img--fallback{object-fit:contain;padding:1rem;opacity:.6}
+.card__body{flex:1;min-width:0;display:flex;flex-direction:column;gap:.25rem}
+.card__title{margin:0;font-size:1.05rem;line-height:1.25;overflow-wrap:anywhere;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card__author{margin:0;color:var(--c-muted);font-size:.9rem;overflow-wrap:anywhere;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card__meta{margin:0;color:var(--c-muted);font-size:.8rem}
+.card__price{margin:.15rem 0;font-weight:700}
+.card__links{list-style:none;margin:auto 0 0;padding:.5rem 0 0;display:flex;flex-wrap:wrap;gap:.4rem}
+.card__link{display:inline-block;padding:.45rem .7rem;border-radius:8px;font-size:.82rem;font-weight:600;
+  color:#fff;text-decoration:none;min-height:36px}
+.card__link--play{background:var(--c-play)}
+.card__link--amazon{background:var(--c-amazon)}
+.card__link--store{background:var(--c-store)}
+.card__link--info{background:transparent;color:var(--c-text);border:1px solid var(--c-border)}
+
+.more{display:block;margin:1.5rem auto;padding:.8rem 1.6rem;font-size:1rem;font-weight:600;
+  border-radius:var(--radius);border:1px solid var(--c-border);background:var(--c-surface);color:var(--c-text);cursor:pointer}
+.more[disabled]{opacity:.6;cursor:progress}
+
+/* skeleton loading */
+.card--skeleton{min-height:176px;animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.5}}
+@media(prefers-reduced-motion:reduce){.card--skeleton{animation:none}}
